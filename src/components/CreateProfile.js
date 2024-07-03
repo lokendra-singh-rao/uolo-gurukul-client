@@ -83,7 +83,7 @@ const CreateProfile = ({ setTeamPageActive }) => {
       });
       const data = await response.json();
       if (data?.err) {
-        toast.info(data.err);
+        toast.error(data.err);
       } else {
         setSuccess(true);
         setTimeout(() => {

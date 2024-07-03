@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import generatePaginationData from "../utils/generatePaginationData";
 
 function Pagination({ currentPage, totalPage, onPageChange }) {
   const paginationData = generatePaginationData(currentPage, totalPage);
 
+  useEffect(() => {
+    console.log(currentPage, totalPage);
+  }, [currentPage, totalPage]);
   return (
     <div className="pagination">
       {totalPage > 0 && (

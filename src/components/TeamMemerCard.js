@@ -10,8 +10,12 @@ function TeamMemberCard({ fetchUsers, member }) {
         method: "DELETE",
       });
       const data = await response.json();
-      toast.info(data?.message);
-      fetchUsers();
+      if (data?.err) {
+        toast.error("Something went wrong! Please try again");
+      } else {
+        toast.info(data?.message);
+        fetchUsers();
+      }
     } catch (error) {
       toast.error("Something went wrong! Please try again");
     }

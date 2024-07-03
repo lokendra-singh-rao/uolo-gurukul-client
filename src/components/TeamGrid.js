@@ -28,7 +28,7 @@ function TeamGrid({ users, fetchUsers, isLoading }) {
           <div></div>
         </div>
       )}
-      {users.length === 0 && !isLoading && (
+      {users?.length === 0 && !isLoading && (
         <div className="no-user-found">
           <img
             src={noResultsIcon}

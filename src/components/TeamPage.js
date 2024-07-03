@@ -27,10 +27,14 @@ function TeamPage({ setTeamPageActive }) {
         `${values.serverURL}/listUsers?page=${currentPage}&query=${searchQuery}`
       );
       const data = await response.json();
-      setUsers(data?.filteredUsers);
-      setTotalPage(data?.totalPages);
-      if (data.totalPages < currentPage && currentPage > 1) {
-        setCurrentPage(data.totalPages);
+      if (data?.err) {
+        toast.error("Something went wrong! Please try again");
+      } else {
+        setUsers(data?.filteredUsers);
+        setTotalPage(data?.totalPages);
+        if (data.totalPages < currentPage && currentPage > 1) {
+          setCurrentPage(data.totalPages);
+        }
       }
     } catch (error) {
       toast.error("Something went wrong! Please try again");
