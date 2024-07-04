@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import uoloLogo from "../images/uoloLogo.png";
 
-function Sidebar({
-  showSidebar,
-  setShowSidebar,
-  teamPageActive,
-  setTeamPageActive,
-}) {
+function Sidebar({ showSidebar, setShowSidebar, teamPageActive }) {
   return (
     <React.Fragment>
       {showSidebar ? (
@@ -20,7 +15,7 @@ function Sidebar({
       )}
       <aside
         name="sidebar"
-        className={showSidebar ? "sidebar phone-active" : "sidebar"}
+        className={showSidebar === true ? "sidebar phone-active" : "sidebar"}
       >
         <nav>
           <ul>
@@ -33,11 +28,14 @@ function Sidebar({
             <Link
               to={"/"}
               onClick={() => {
-                // setTeamPageActive(true);
                 setShowSidebar(false);
               }}
             >
-              <li className={teamPageActive ? "active" : ""}>
+              <li
+                className={
+                  teamPageActive !== null && teamPageActive ? "active" : ""
+                }
+              >
                 <svg
                   width="22"
                   height="16"
@@ -53,11 +51,14 @@ function Sidebar({
             <Link
               to={"/create-profile"}
               onClick={() => {
-                // setTeamPageActive(false);
                 setShowSidebar(false);
               }}
             >
-              <li className={teamPageActive ? "" : "active"}>
+              <li
+                className={
+                  teamPageActive !== null && !teamPageActive ? "active" : ""
+                }
+              >
                 <svg
                   width="22"
                   height="16"

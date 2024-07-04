@@ -47,6 +47,17 @@ const CreateProfile = ({ setTeamPageActive }) => {
       e.preventDefault();
       setSubmitButtonDisabled(true);
       //Form validations
+      if (
+        image.data !== "" ||
+        formData.name !== "" ||
+        formData.email !== "" ||
+        formData.password !== "" ||
+        formData.confirmPassword !== ""
+      ) {
+        toast.error("All fields are required!");
+        return;
+      }
+
       if (!(isAlphabetsOnly(formData.name) && formData.name.length > 0)) {
         toast.error("Invalid name");
         return;
@@ -125,6 +136,7 @@ const CreateProfile = ({ setTeamPageActive }) => {
               <img
                 className="success-icon"
                 src={successIcon}
+                alt="success"
               />
             </div>
             <div>User has been successfully created</div>
@@ -134,7 +146,7 @@ const CreateProfile = ({ setTeamPageActive }) => {
       <div className="create-profile-main">
         <h1>Create Profile</h1>
         <div className="profile-creation-container">
-          <form className="create-profile-form">
+          <form className="create-profile-form ">
             <div className="photo-upload">
               <label className="photo-upload-label">
                 Upload Photo<span className="mandatory-field">*</span>

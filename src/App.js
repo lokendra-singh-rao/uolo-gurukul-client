@@ -6,7 +6,7 @@ import CreateProfile from "./components/CreateProfile";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import NotFound from "./components/NotFound";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
@@ -17,7 +17,17 @@ function App() {
       <Router>
         <Header setShowSidebar={setShowSidebar} />
         <div className="main-content">
-          <ToastContainer />
+          <ToastContainer
+            position="top-center"
+            limit={3}
+            autoClose={1500}
+            theme="dark"
+            transition={Zoom}
+            hideProgressBar
+            closeOnClick={false}
+            draggable={false}
+            newestOnTop
+          />
           <Sidebar
             showSidebar={showSidebar}
             setShowSidebar={setShowSidebar}
@@ -35,7 +45,7 @@ function App() {
             />
             <Route
               path="*"
-              element={<NotFound />}
+              element={<NotFound setTeamPageActive={setTeamPageActive} />}
             />
           </Routes>
         </div>
