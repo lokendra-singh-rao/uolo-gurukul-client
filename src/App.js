@@ -8,6 +8,7 @@ import { useState } from "react";
 import NotFound from "./components/NotFound";
 import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Login from "./components/Login";
 
 function App() {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -37,6 +38,10 @@ function App() {
           <Routes>
             <Route
               path="/"
+              element={<Login />}
+            />
+            <Route
+              path="/team"
               element={<TeamPage setTeamPageActive={setTeamPageActive} />}
             />
             <Route

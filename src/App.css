@@ -194,7 +194,6 @@ svg {
   overflow: hidden;
   text-align: center;
   background-color: #f6f6f6;
-  padding: 10px 0;
   border-radius: 0 0 24px 24px;
   margin-top: -5px;
   border: 1.5px solid #ddd;
@@ -462,10 +461,6 @@ button {
     gap: 10px;
   }
 
-  .member-card-info {
-    padding: 15px 0;
-  }
-
   .no-user-found img {
     width: 80%;
   }
@@ -540,9 +535,13 @@ button {
     text-align: center;
   }
 
+  .team-page {
+    height: calc(100vh - 72px);
+  }
+
   .team-grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 10px;
+    gap: 12px;
   }
 
   .sidebar {
@@ -584,10 +583,6 @@ button {
 
   .member-card-info p {
     font-size: 14px;
-  }
-
-  .member-card-info {
-    padding: 10px 0;
   }
 
   .search-bar input {
