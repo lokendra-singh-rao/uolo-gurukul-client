@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import notFound from "../images/notFound.png";
+import notFound from "../../assets/notFound.png";
+import styles from "./NotFound.css";
 
 function NotFound({ setTeamPageActive }) {
   useEffect(() => {
@@ -7,7 +8,7 @@ function NotFound({ setTeamPageActive }) {
   }, []);
 
   return (
-    <div className="not-found flex">
+    <div className={styles.notFound}>
       <img
         src={notFound}
         alt="pageNotFound"

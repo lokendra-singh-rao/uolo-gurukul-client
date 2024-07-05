@@ -1,5 +1,5 @@
 import TeamMemberCard from "./TeamMemerCard";
-import noResultsIcon from "../images/noResultsIcon.png";
+import noResultsIcon from "../../assets/noResultsIcon.png";
 
 function TeamGrid({ users, fetchUsers, isLoading }) {
   return (

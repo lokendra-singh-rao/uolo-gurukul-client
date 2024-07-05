@@ -1,6 +1,7 @@
 import { ToastContainer, Zoom } from "react-toastify";
-import Sidebar from "./Sidebar";
-import Header from "./Header";
+import Sidebar from ".././Shared/Sidebar";
+import Header from ".././Shared/Header";
+import styles from "./Layout.module.css";
 
 export const Layout = ({
   children,
@@ -11,7 +12,7 @@ export const Layout = ({
 }) => (
   <>
     <Header setShowSidebar={setShowSidebar} />
-    <div className="main-content">
+    <div className={styles.mainContent}>
       <ToastContainer
         position="top-center"
         limit={3}

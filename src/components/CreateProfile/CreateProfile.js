@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import uploadImageIcon from "../images/uploadImageIcon.png";
-import uploadIcon from "../images/uploadIcon.png";
-import successIcon from "../images/success.gif";
-import values from "../values";
+import uploadImageIcon from "../../assets/uploadImageIcon.png";
+import uploadIcon from "../../assets/uploadIcon.png";
+import successIcon from "../../assets/success.gif";
+import values from "../../values.js";
 import { toast } from "react-toastify";
-import { isAlphabetsOnly, isEmailValid } from "../utils/regexTesters.js";
+import { isAlphanumeric, isEmailValid } from "../../utils/regexTesters.js";
 import { useNavigate } from "react-router-dom";
 
 const CreateProfile = ({ setTeamPageActive }) => {
@@ -14,6 +14,13 @@ const CreateProfile = ({ setTeamPageActive }) => {
     email: "",
     password: "",
     confirmPassword: "",
+  });
+  const [formError, setFormError] = useState({
+    image: false,
+    name: false,
+    email: false,
+    password: false,
+    confirmPassword: false,
   });
   const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
   const [success, setSuccess] = useState(false);
@@ -59,7 +66,7 @@ const CreateProfile = ({ setTeamPageActive }) => {
         return;
       }
 
-      if (!(isAlphabetsOnly(formData.name) && formData.name.length > 0)) {
+      if (!(isAlphanumeric(formData.name) && formData.name.length > 0)) {
         toast.error("Invalid name");
         return;
       }
@@ -90,15 +97,15 @@ const CreateProfile = ({ setTeamPageActive }) => {
 
       setSubmitting(true);
 
-      const fromDataToSend = new FormData();
-      fromDataToSend.append("image", image.data);
-      fromDataToSend.append("name", formData.name);
-      fromDataToSend.append("email", formData.email);
-      fromDataToSend.append("password", formData.password);
+      const formDataToSend = new FormData();
+      formDataToSend.append("image", image.data);
+      formDataToSend.append("name", formData.name);
+      formDataToSend.append("email", formData.email);
+      formDataToSend.append("password", formData.password);
 
-      const response = await fetch(`${values.serverURL}/addUser`, {
+      const response = await fetch(`${values.serverURL}/users`, {
         method: "POST",
-        body: fromDataToSend,
+        body: formDataToSend,
       });
       const data = await response.json();
       if (data?.err) {
@@ -118,7 +125,6 @@ const CreateProfile = ({ setTeamPageActive }) => {
   };
 
   const handleFileChange = (e) => {
-    const { name } = e.target;
     if (
       e?.target?.files[0]?.type !== "image/jpeg" &&
       e?.target?.files[0]?.type !== "image/png"

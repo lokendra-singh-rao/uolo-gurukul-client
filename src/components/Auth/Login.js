@@ -1,35 +1,36 @@
 import React, { useState } from "react";
-import loginPage from "../images/loginPage.png";
-import uoloLogo from "../images/uoloLogo.png";
+import loginPage from "../../assets/loginPage.png";
+import uoloLogo from "../../assets/uoloLogo.png";
+import styles from "./Login.module.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   return (
-    <div className="login-container flex">
-      <div className="login-left">
+    <div className={styles.loginContainer}>
+      <div className={styles.loginLeft}>
         <img
           src={loginPage}
           alt="login-left"
         />
-        <div className="login-image-overlay"></div>
+        <div className={styles.loginImageOverlay}></div>
       </div>
-      <div className="login-right flex">
-        <div className="login-right-logo">
+      <div className={styles.loginRight}>
+        <div className={styles.loginRightLogo}>
           <img
             src={uoloLogo}
             alt="uolo-logo"
           />
         </div>
-        <hr className="horizontal-line-login" />
-        <div className="login-right-info">
+        <hr className={styles.horizontalLineLogin} />
+        <div className={styles.loginRightInfo}>
           <h1>Welcome back!</h1>
           <p>Log in to continue and access all the features</p>
         </div>
-        <div className="login-form-container">
-          <form className="login-form ">
-            <div className="form-group">
+        <div className={styles.loginFormContainer}>
+          <form className={styles.loginForm}>
+            <div className={styles.formGroup}>
               <label htmlFor="email">Enter Email</label>
               <input
                 type="email"
@@ -41,7 +42,7 @@ function Login() {
               />
             </div>
 
-            <div className="form-group">
+            <div className={styles.formGroup}>
               <label htmlFor="password">Password</label>
               <input
                 type="password"
@@ -55,7 +56,7 @@ function Login() {
 
             <button
               type="submit"
-              className="login-btn"
+              className={styles.loginBtn}
             >
               Login
             </button>

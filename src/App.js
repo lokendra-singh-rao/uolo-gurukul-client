@@ -2,8 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import React from "react";
 import "react-toastify/dist/ReactToastify.css";
-import { AppContent } from "./components/AppComponent";
-
+import { AppContent } from "./components/AppContent/AppComponent";
 function App() {
   return (
     <div className="app">

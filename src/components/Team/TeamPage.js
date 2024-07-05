@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import SearchBar from "./SearchBar";
+import SearchBar from "../SearchBar/SearchBar";
 import TeamGrid from "./TeamGrid";
-import Pagination from "./Pagination";
-import values from "../values";
+import Pagination from "../Pagination/Pagination";
+import values from "../../values";
 import { toast } from "react-toastify";
 
 function TeamPage({ setTeamPageActive }) {
@@ -24,7 +24,10 @@ function TeamPage({ setTeamPageActive }) {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `${values.serverURL}/listUsers?page=${currentPage}&query=${searchQuery}`
+        `${values.serverURL}/users?page=${currentPage}&query=${searchQuery}`,
+        {
+          method: "GET",
+        }
       );
       const data = await response.json();
       if (data?.err) {

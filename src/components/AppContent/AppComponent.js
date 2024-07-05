@@ -1,9 +1,9 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import Login from "./Login";
-import TeamPage from "./TeamPage";
-import CreateProfile from "./CreateProfile";
-import NotFound from "./NotFound";
-import { Layout } from "./Layout";
+import Login from ".././Auth/Login";
+import TeamPage from "../Team/TeamPage";
+import CreateProfile from ".././CreateProfile/CreateProfile";
+import NotFound from "../NotFound/NotFound.js";
+import { Layout } from "../Layout/Layout";
 import React, { useState } from "react";
 
 export function AppContent() {

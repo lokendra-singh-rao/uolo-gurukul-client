@@ -1,12 +1,12 @@
 import React from "react";
-import deleteIcon from "../images/deleteIcon.png";
-import values from "../values";
+import deleteIcon from "../../assets/deleteIcon.png";
+import values from "../../values";
 import { toast } from "react-toastify";
 
 function TeamMemberCard({ fetchUsers, member }) {
   async function handleDelete(id) {
     try {
-      const response = await fetch(`${values.serverURL}/delete?id=${id}`, {
+      const response = await fetch(`${values.serverURL}/users?id=${id}`, {
         method: "DELETE",
       });
       const data = await response.json();

@@ -1,9 +1,9 @@
 import React from "react";
-import uoloLogo from "../images/uoloLogo.png";
-import userIcon from "../images/userIcon.png";
-import arrowDown from "../images/arrowDown.svg";
-import navbarMenu from "../images/navbarMenu.png";
-import userMenu from "../images/userMenu.png";
+import uoloLogo from "../../assets/uoloLogo.png";
+import userIcon from "../../assets/userIcon.png";
+import arrowDown from "../../assets/arrowDown.svg";
+import navbarMenu from "../../assets/navbarMenu.png";
+import userMenu from "../../assets/userMenu.png";
 import { Link } from "react-router-dom";
 
 const Navbar = ({ setShowSidebar }) => {
