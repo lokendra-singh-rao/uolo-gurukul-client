@@ -26,7 +26,7 @@ function Sidebar({ showSidebar, setShowSidebar, teamPageActive }) {
               />
             </li>
             <Link
-              to={"/"}
+              to={"/team"}
               onClick={() => {
                 setShowSidebar(false);
               }}
