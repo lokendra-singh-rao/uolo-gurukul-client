@@ -17,6 +17,7 @@ const CreateProfile = ({ setTeamPageActive }) => {
   });
   const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
   const [success, setSuccess] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,11 +49,11 @@ const CreateProfile = ({ setTeamPageActive }) => {
       setSubmitButtonDisabled(true);
       //Form validations
       if (
-        image.data !== "" ||
-        formData.name !== "" ||
-        formData.email !== "" ||
-        formData.password !== "" ||
-        formData.confirmPassword !== ""
+        image?.data === "" ||
+        formData.name === "" ||
+        formData.email === "" ||
+        formData.password === "" ||
+        formData.confirmPassword === ""
       ) {
         toast.error("All fields are required!");
         return;
@@ -72,6 +73,11 @@ const CreateProfile = ({ setTeamPageActive }) => {
         return;
       }
 
+      if (formData.password.length < 6) {
+        toast.error("Passwords must be at least 6 characters in length!");
+        return;
+      }
+
       if (formData.password !== formData.confirmPassword) {
         toast.error("Password does not match!");
         return;
@@ -81,6 +87,8 @@ const CreateProfile = ({ setTeamPageActive }) => {
         toast.error("Image not selected!");
         return;
       }
+
+      setSubmitting(true);
 
       const fromDataToSend = new FormData();
       fromDataToSend.append("image", image.data);
@@ -98,13 +106,14 @@ const CreateProfile = ({ setTeamPageActive }) => {
       } else {
         setSuccess(true);
         setTimeout(() => {
-          navigate("/");
+          navigate("/team");
         }, 3000);
       }
     } catch (error) {
       toast.error("Something went wrong! Please try again later");
     } finally {
       setSubmitButtonDisabled(false);
+      setSubmitting(false);
     }
   };
 
@@ -248,7 +257,7 @@ const CreateProfile = ({ setTeamPageActive }) => {
               onClick={handleSubmit}
               disabled={submitButtonDisabled}
             >
-              Save
+              {submitting ? "Saving..." : "Save"}
             </button>
           </div>
 

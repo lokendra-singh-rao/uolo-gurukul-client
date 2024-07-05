@@ -13,6 +13,7 @@ function Login() {
           src={loginPage}
           alt="login-left"
         />
+        <div className="login-image-overlay"></div>
       </div>
       <div className="login-right flex">
         <div className="login-right-logo">
