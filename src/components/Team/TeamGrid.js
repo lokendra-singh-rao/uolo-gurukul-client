@@ -1,12 +1,14 @@
 import TeamMemberCard from "./TeamMemerCard";
 import noResultsIcon from "../../assets/noResultsIcon.png";
+import styles from "./TeamGrid.module.css";
+import Loader from "../Shared/Loader";
 
 function TeamGrid({ users, fetchUsers, isLoading }) {
   return (
     <>
       {!isLoading ? (
         users?.length > 0 && (
-          <div className="team-grid">
+          <div className={styles.teamGrid}>
             {users?.map((member) => (
               <TeamMemberCard
                 key={member._id}
@@ -17,19 +19,10 @@ function TeamGrid({ users, fetchUsers, isLoading }) {
           </div>
         )
       ) : (
-        <div className="lds-roller">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
+        <Loader />
       )}
       {users?.length === 0 && !isLoading && (
-        <div className="no-user-found">
+        <div className={styles.noUserFound}>
           <img
             src={noResultsIcon}
             alt="No results"

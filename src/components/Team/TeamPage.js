@@ -4,6 +4,7 @@ import TeamGrid from "./TeamGrid";
 import Pagination from "../Pagination/Pagination";
 import values from "../../values";
 import { toast } from "react-toastify";
+import styles from "./TeamPage.module.css";
 
 function TeamPage({ setTeamPageActive }) {
   const [users, setUsers] = useState([]);
@@ -53,7 +54,7 @@ function TeamPage({ setTeamPageActive }) {
 
   return (
     <main
-      className="team-page"
+      className={styles.teamPage}
       style={{ zIndex: 0 }}
     >
       <h1 style={{ textAlign: "center" }}>Our Team</h1>

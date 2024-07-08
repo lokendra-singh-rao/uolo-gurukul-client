@@ -2,6 +2,7 @@ import React from "react";
 import deleteIcon from "../../assets/deleteIcon.png";
 import values from "../../values";
 import { toast } from "react-toastify";
+import styles from "./TeamMemberCard.module.css";
 
 function TeamMemberCard({ fetchUsers, member }) {
   async function handleDelete(id) {
@@ -22,10 +23,10 @@ function TeamMemberCard({ fetchUsers, member }) {
   }
 
   return (
-    <div className="member-card">
-      <div className="member-image">
+    <div className={styles.memberCard}>
+      <div className={styles.memberImage}>
         <img
-          className="delete-icon"
+          className={styles.deleteIcon}
           onClick={(e) => handleDelete(member._id)}
           src={deleteIcon}
           alt="deleteIcon"
@@ -35,7 +36,7 @@ function TeamMemberCard({ fetchUsers, member }) {
           alt={member.name}
         />
       </div>
-      <div className="member-card-info">
+      <div className={styles.memberCardInfo}>
         <h3>{member.name}</h3>
         <p>{member.email}</p>
       </div>

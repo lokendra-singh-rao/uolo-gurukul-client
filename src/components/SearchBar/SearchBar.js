@@ -1,11 +1,12 @@
 import React from "react";
 import searchIcon from "../../assets/searchIcon.svg";
+import styles from "./SearchBar.module.css";
 
 function SearchBar({ searchQuery, setSearchQuery }) {
   return (
-    <div className="search-bar">
+    <div className={styles.searchBar}>
       <img
-        className="search-icon"
+        className={styles.searchIcon}
         src={searchIcon}
         alt="searchIcon"
       />
