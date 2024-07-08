@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import uoloLogo from "../../assets/uoloLogo.png";
+import styles from "./Sidebar.module.css";
 
 function Sidebar({ showSidebar, setShowSidebar, teamPageActive }) {
   return (
@@ -15,11 +16,15 @@ function Sidebar({ showSidebar, setShowSidebar, teamPageActive }) {
       )}
       <aside
         name="sidebar"
-        className={showSidebar === true ? "sidebar phone-active" : "sidebar"}
+        className={
+          showSidebar === true
+            ? `${styles.sidebar} ${styles.phoneActive}`
+            : styles.sidebar
+        }
       >
         <nav>
           <ul>
-            <li className="uolo-logo-sidebar">
+            <li className={styles.uoloLogoSidebar}>
               <img
                 src={uoloLogo}
                 alt="uolologo"
@@ -33,7 +38,7 @@ function Sidebar({ showSidebar, setShowSidebar, teamPageActive }) {
             >
               <li
                 className={
-                  teamPageActive !== null && teamPageActive ? "active" : ""
+                  teamPageActive !== null && teamPageActive ? styles.active : ""
                 }
               >
                 <svg
@@ -56,7 +61,9 @@ function Sidebar({ showSidebar, setShowSidebar, teamPageActive }) {
             >
               <li
                 className={
-                  teamPageActive !== null && !teamPageActive ? "active" : ""
+                  teamPageActive !== null && !teamPageActive
+                    ? styles.active
+                    : ""
                 }
               >
                 <svg

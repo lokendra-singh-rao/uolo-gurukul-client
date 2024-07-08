@@ -5,11 +5,12 @@ import arrowDown from "../../assets/arrowDown.svg";
 import navbarMenu from "../../assets/navbarMenu.png";
 import userMenu from "../../assets/userMenu.png";
 import { Link } from "react-router-dom";
+import styles from "./Header.module.css";
 
 const Navbar = ({ setShowSidebar }) => {
   return (
-    <div className="navbar flex">
-      <div className="navbar-menu">
+    <div className={styles.navbar}>
+      <div className={styles.navbarMenu}>
         <img
           onClick={() => {
             setShowSidebar(true);
@@ -18,7 +19,7 @@ const Navbar = ({ setShowSidebar }) => {
           alt="navbarMenu"
         />
       </div>
-      <div className="navbar-logo">
+      <div className={styles.navbarLogo}>
         <Link to={"/team"}>
           <img
             src={uoloLogo}
@@ -26,15 +27,15 @@ const Navbar = ({ setShowSidebar }) => {
           />
         </Link>
       </div>
-      <div className="navbar-user flex">
-        <div className="navbar-user-icon">
+      <div className={styles.navbarUser}>
+        <div className={styles.navbarUserIcon}>
           <img
             src={userIcon}
             alt="user-logo"
           />
         </div>
-        <div className="navbar-user-info flex">
-          <div className="navbar-user-name">Vikrant</div>
+        <div className={styles.navbarUserInfo}>
+          <div className={styles.navbarUserName}>Vikrant</div>
           <div className="navbar-user-dropdown">
             <img
               src={arrowDown}
@@ -43,7 +44,7 @@ const Navbar = ({ setShowSidebar }) => {
           </div>
         </div>
       </div>
-      <div className="navbar-user-menu">
+      <div className={styles.navbarUserMenu}>
         <img
           src={userMenu}
           alt="userMenu"

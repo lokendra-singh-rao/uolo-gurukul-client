@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import notFound from "../../assets/notFound.png";
-import styles from "./NotFound.css";
+import styles from "./NotFound.module.css";
 
 function NotFound({ setTeamPageActive }) {
   useEffect(() => {
