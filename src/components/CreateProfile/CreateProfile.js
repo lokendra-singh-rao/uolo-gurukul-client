@@ -148,12 +148,12 @@ const CreateProfile = ({ setTeamPageActive }) => {
         toast.error(data.err);
       } else {
         setSuccess(true);
-        setTimeout(() => {
-          navigate("/team");
-        }, 3000);
+        // setTimeout(() => {
+        //   navigate("/team");
+        // }, 3000);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast.error("Something went wrong! Please try again later");
     } finally {
       setSubmitButtonDisabled(false);
@@ -171,13 +171,13 @@ const CreateProfile = ({ setTeamPageActive }) => {
     });
     setImage({ preview: "", data: "" });
   };
+
   const handleFileChange = (e) => {
-    console.log("ll");
     if (
       e?.target?.files[0]?.type !== "image/jpeg" &&
       e?.target?.files[0]?.type !== "image/png"
     ) {
-      toast.info("Only jpg/jpeg/png image type allowed!");
+      toast.info("Only jpg|jpeg|png image type allowed!");
       return;
     }
     const img = {

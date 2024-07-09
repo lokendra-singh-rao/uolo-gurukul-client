@@ -11,7 +11,6 @@ function TeamGrid({ users, fetchUsers, isLoading }) {
           <div className={styles.teamGrid}>
             {users?.map((member) => (
               <TeamMemberCard
-                key={member._id}
                 fetchUsers={fetchUsers}
                 member={member}
               />

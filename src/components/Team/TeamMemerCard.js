@@ -23,7 +23,10 @@ function TeamMemberCard({ fetchUsers, member }) {
   }
 
   return (
-    <div className={styles.memberCard}>
+    <div
+      key={member._id}
+      className={styles.memberCard}
+    >
       <div className={styles.memberImage}>
         <img
           className={styles.deleteIcon}
