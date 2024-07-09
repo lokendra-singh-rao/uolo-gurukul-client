@@ -1,17 +1,18 @@
 import React from "react";
+import styles from "./FormActionButtons.module.css";
 
 function FormActionButtons({ submitButtonDisabled, handleSubmit, submitting }) {
   return (
-    <div className="form-actions">
+    <div className={styles.formActions}>
       <button
         type="button"
-        className="cancel-btn"
+        className={styles.cancelBtn}
       >
         Cancel
       </button>
       <button
         type="submit"
-        className={submitButtonDisabled ? "disabled-btn" : "save-btn"}
+        className={submitButtonDisabled ? styles.disabledBtn : styles.saveBtn}
         onClick={handleSubmit}
         disabled={submitButtonDisabled}
       >

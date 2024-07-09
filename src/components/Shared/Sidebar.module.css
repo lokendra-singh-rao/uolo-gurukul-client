@@ -11,6 +11,11 @@
   overflow-y: auto;
 }
 
+a {
+  text-decoration: none;
+  color: #667085;
+}
+
 .sidebar ul {
   list-style-type: none;
   padding: 0;

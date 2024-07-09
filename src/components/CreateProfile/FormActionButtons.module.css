@@ -1,0 +1,40 @@
+.formActions {
+  display: flex;
+  justify-content: end;
+  margin-top: 40px;
+  gap: 16px;
+}
+
+.cancelBtn {
+  background-color: #fff;
+  color: #561fe7;
+  border: 1px solid #561fe7;
+}
+
+.saveBtn {
+  background-color: #561fe7;
+  color: #fff;
+}
+
+.cancelBtn,
+.saveBtn {
+  min-width: 120px;
+  padding: 10px 24px;
+  border-radius: 8px;
+}
+
+.disabledBtn {
+  border-radius: 8px;
+  min-width: 120px;
+  background-color: #98a2b3;
+  color: #fff;
+}
+
+@media screen and (max-width: 500px) {
+  .formActions {
+    width: unset;
+    padding-right: 24px;
+    margin-top: 40px;
+    padding-bottom: 15px;
+  }
+}

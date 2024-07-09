@@ -12,90 +12,10 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
-/* CREATE PROFILE CSS */
-
-.profile-form-partition {
-  position: absolute;
-  width: 459px;
-  border: 1px solid #eaecf0;
-  left: 0;
-  bottom: 70px;
-}
-
-h1 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.form-actions {
-  display: flex;
-  justify-content: end;
-  margin-top: 40px;
-  gap: 16px;
-}
-
 button {
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
-}
-
-.cancel-btn {
-  background-color: #fff;
-  color: #561fe7;
-  border: 1px solid #561fe7;
-}
-
-.save-btn {
-  background-color: #561fe7;
-  color: #fff;
-}
-
-.cancel-btn,
-.save-btn {
-  min-width: 120px;
-  padding: 10px 24px;
-  border-radius: 8px;
-}
-
-@media screen and (max-width: 1100px) {
-  .login-image-overlay,
-  .login-left img {
-    width: 420px;
-    max-height: 539px;
-  }
-
-  .login-right,
-  .login-form input {
-    width: 352px;
-  }
-}
-
-.disabled-btn {
-  border-radius: 8px;
-  min-width: 120px;
-  background-color: #98a2b3;
-  color: #fff;
-}
-
-@media screen and (max-width: 500px) {
-  .form-actions {
-    width: unset;
-    padding-right: 24px;
-    margin-top: 40px;
-    padding-bottom: 15px;
-  }
-
-  .profile-form-partition {
-    width: 100vw;
-    bottom: 65px;
-  }
-}
-
-a {
-  text-decoration: none;
-  color: #667085;
 }
