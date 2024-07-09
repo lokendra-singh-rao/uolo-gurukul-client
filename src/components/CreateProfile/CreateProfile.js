@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import uploadImageIcon from "../../assets/uploadImageIcon.png";
-import uploadIcon from "../../assets/uploadIcon.png";
-import successIcon from "../../assets/success.gif";
+
 import values from "../../values.js";
 import { toast } from "react-toastify";
 import { isAlphanumeric, isEmailValid } from "../../utils/regexTesters.js";
 import { useNavigate } from "react-router-dom";
+import SuccessModal from "./SuccessModal.js";
+import FormInput from "../Shared/FormInput.js";
+import UploadPhotoInput from "./UploadPhotoInput.js";
+import FormActionButtons from "./FormActionButtons.js";
+import styles from "./CreateProfile.module.css";
 
 const CreateProfile = ({ setTeamPageActive }) => {
   const [image, setImage] = useState({ preview: "", data: "" });
@@ -16,11 +19,16 @@ const CreateProfile = ({ setTeamPageActive }) => {
     confirmPassword: "",
   });
   const [formError, setFormError] = useState({
-    image: false,
     name: false,
     email: false,
     password: false,
     confirmPassword: false,
+  });
+  const [errorMessage, setErrorMessage] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
   const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
   const [success, setSuccess] = useState(false);
@@ -71,7 +79,7 @@ const CreateProfile = ({ setTeamPageActive }) => {
         return;
       }
       if (!isEmailValid(formData.email)) {
-        toast.error("Invalid email");
+        // formError.email === true;
         return;
       }
 
@@ -141,133 +149,66 @@ const CreateProfile = ({ setTeamPageActive }) => {
 
   return (
     <>
-      {success && (
-        <div
-          className="create-profile-backdrop flex"
-          onClick={() => setSuccess(false)}
-        >
-          <div className="profile-create-success">
-            <div>
-              <img
-                className="success-icon"
-                src={successIcon}
-                alt="success"
-              />
-            </div>
-            <div>User has been successfully created</div>
-          </div>
-        </div>
-      )}
-      <div className="create-profile-main">
+      {success && <SuccessModal setSuccess={setSuccess} />}
+      <div className={styles.createProfileMain}>
         <h1>Create Profile</h1>
-        <div className="profile-creation-container">
-          <form className="create-profile-form ">
-            <div className="photo-upload">
-              <label className="photo-upload-label">
-                Upload Photo<span className="mandatory-field">*</span>
-              </label>
-              <p>Upload passport size photo</p>
-              <div className="avatar-placeholder">
-                <img
-                  src={image.preview !== "" ? image.preview : uploadImageIcon}
-                  alt="Avatar placeholder"
-                />
-                <div className="upload-btn flex">
-                  <input
-                    name="image"
-                    type="file"
-                    id="upload-input"
-                    hidden
-                    onChange={(e) => handleFileChange(e)}
-                  />
-                  <label
-                    htmlFor="upload-input"
-                    className="upload-icon"
-                  >
-                    <img
-                      src={uploadIcon}
-                      alt="upload-icon"
-                    />
-                  </label>
-                </div>
-              </div>
-            </div>
+        <div className={styles.profileCreationContainer}>
+          <form className={styles.createProfileForm}>
+            <UploadPhotoInput
+              image={image}
+              handleFileChange={handleFileChange}
+            />
 
-            <div className="form-group">
-              <label htmlFor="name">
-                Name<span className="mandatory-field">*</span>
-              </label>
-              <input
-                type="text"
-                name="name"
-                placeholder="Enter full name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-            </div>
+            <FormInput
+              placeholder={"Enter full name"}
+              fieldName={"Name"}
+              type={"text"}
+              name={"name"}
+              value={formData.name}
+              handleChange={handleChange}
+              isError={formError.name}
+              errorMessage={errorMessage.name}
+            />
 
-            <div className="form-group">
-              <label htmlFor="email">
-                Email-ID<span className="mandatory-field">*</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
+            <FormInput
+              placeholder={"Enter email"}
+              fieldName={"Email-ID"}
+              type={"email"}
+              name={"email"}
+              value={formData.email}
+              handleChange={handleChange}
+              isError={formError.email}
+              errorMessage={errorMessage.email}
+            />
 
-            <div className="form-group">
-              <label htmlFor="password">
-                Password<span className="mandatory-field">*</span>
-              </label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Enter password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
-            </div>
+            <FormInput
+              placeholder={"Enter password"}
+              fieldName={"Password"}
+              type={"password"}
+              name={"password"}
+              value={formData.password}
+              handleChange={handleChange}
+              isError={formError.password}
+              errorMessage={errorMessage.password}
+            />
 
-            <div className="form-group">
-              <label htmlFor="confirmPassword">
-                Confirm Password<span className="mandatory-field">*</span>
-              </label>
-              <input
-                type="password"
-                name="confirmPassword"
-                placeholder="Enter confirm password"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                required
-              />
-            </div>
+            <FormInput
+              placeholder={"Enter confirm password"}
+              fieldName={"Confirm Password"}
+              type={"password"}
+              name={"confirmPassword"}
+              value={formData.confirmPassword}
+              handleChange={handleChange}
+              isError={formError.confirmPassword}
+              errorMessage={errorMessage.confirmPassword}
+            />
+
+            <FormActionButtons
+              submitButtonDisabled={submitButtonDisabled}
+              handleSubmit={handleSubmit}
+              submitting={submitting}
+            />
           </form>
-          {/* styled component */}
-          <div className="form-actions">
-            <button
-              type="button"
-              className="cancel-btn"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className={submitButtonDisabled ? "disabled-btn" : "save-btn"}
-              onClick={handleSubmit}
-              disabled={submitButtonDisabled}
-            >
-              {submitting ? "Saving..." : "Save"}
-            </button>
-          </div>
-
-          <hr className="profile-form-partition" />
         </div>
       </div>
     </>

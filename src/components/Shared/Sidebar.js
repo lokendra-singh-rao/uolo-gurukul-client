@@ -8,7 +8,7 @@ function Sidebar({ showSidebar, setShowSidebar, teamPageActive }) {
     <React.Fragment>
       {showSidebar ? (
         <div
-          className="backdrop"
+          className={styles.backdrop}
           onClick={() => setShowSidebar(false)}
         ></div>
       ) : (

@@ -6,7 +6,6 @@ body {
   margin: 0;
   padding: 0;
   position: relative;
-  overflow-x: hidden;
 }
 
 .app {
@@ -14,26 +13,6 @@ body {
 }
 
 /* CREATE PROFILE CSS */
-.create-profile-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: #f6f7f7;
-  flex-grow: 1;
-  height: calc(100vh - 76.5px);
-}
-
-.profile-creation-container {
-  position: relative;
-  min-width: 460px;
-  min-height: 626px;
-  padding: 32px;
-  background-color: #fff;
-  border-radius: 24px;
-  border: 2px solid #eee;
-  padding-bottom: 16px;
-}
 
 .profile-form-partition {
   position: absolute;
@@ -47,105 +26,6 @@ h1 {
   text-align: center;
   color: #333;
   margin-bottom: 20px;
-}
-
-.photo-upload {
-  margin-bottom: 20px;
-}
-
-.photo-upload-label {
-  display: block;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 20px;
-  color: #344054;
-}
-
-.photo-upload p {
-  font-size: 12px;
-  color: #666;
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
-.avatar-placeholder {
-  width: 156px;
-  height: 156px;
-  position: relative;
-  overflow: hidden;
-}
-
-.avatar-placeholder img {
-  width: 156px;
-  height: 156px;
-  object-fit: scale-down;
-  border-radius: 50%;
-  background-color: #fff8e7;
-}
-
-.upload-btn {
-  background-color: white;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 18px;
-  cursor: pointer;
-  border: 2px solid #ccc;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.mandatory-field {
-  color: #d92d20;
-}
-
-.create-profile-form label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.form-group label {
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #344054;
-}
-
-.create-profile-form input {
-  width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: 14px;
-  height: 44px;
-}
-
-#upload-input {
-  border: none;
-  cursor: pointer;
-}
-
-.upload-icon {
-  position: relative;
-  margin: 0;
-}
-
-.upload-icon img {
-  max-width: 32px;
-  cursor: pointer;
-  max-height: 32px;
-  position: absolute;
-  background-color: white;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .form-actions {
@@ -181,10 +61,6 @@ button {
   border-radius: 8px;
 }
 
-.backdrop {
-  display: none;
-}
-
 @media screen and (max-width: 1100px) {
   .login-image-overlay,
   .login-left img {
@@ -198,137 +74,14 @@ button {
   }
 }
 
-@media screen and (max-width: 1012px) {
-  .team-grid {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 10px;
-  }
-
-  .no-user-found img {
-    width: 80%;
-  }
-}
-
 .disabled-btn {
   border-radius: 8px;
   min-width: 120px;
   background-color: #98a2b3;
   color: #fff;
 }
-.create-profile-backdrop {
-  width: 100%;
-  height: calc(100vh);
-  top: 0;
-  background-color: #0000007c;
-  position: absolute;
-  z-index: 10000;
-}
-
-.profile-create-success {
-  min-width: 440px;
-  min-height: 224px;
-  background-color: white;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-  font-weight: 500;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 16px;
-  border-radius: 16px;
-  align-items: center;
-}
-
-.success-icon {
-  width: 100px;
-  height: 100px;
-}
-
-.create-profile {
-  position: relative;
-  flex-grow: 1;
-  background-color: #f6f7f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@media screen and (max-width: 700px) {
-  .backdrop {
-    display: block;
-    background-color: #000000b0;
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-  }
-
-  .profile-create-success {
-    width: 328px;
-    min-width: 0;
-    font-size: 22px;
-    text-align: center;
-  }
-
-  .team-page {
-    height: calc(100vh - 72px);
-  }
-
-  .team-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 12px;
-  }
-
-  .member-card {
-    font-size: 14px;
-  }
-
-  .member-card-info p {
-    font-size: 14px;
-  }
-
-  .search-bar input {
-    border-radius: 10px 0 0 10px;
-  }
-
-  .search-bar button {
-    border-radius: 0 10px 10px 0;
-  }
-}
 
 @media screen and (max-width: 500px) {
-  .create-profile-main {
-    background-color: white;
-  }
-
-  .create-profile-main h1 {
-    margin-top: 0;
-  }
-
-  .profile-creation-container {
-    border: none;
-    padding: 0;
-    width: 100vw;
-    min-width: auto;
-  }
-
-  .create-profile-form {
-    flex-direction: column;
-    margin: 0 16px;
-  }
-
-  .create-profile-form input {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 14px;
-    height: 44px;
-  }
-
   .form-actions {
     width: unset;
     padding-right: 24px;
