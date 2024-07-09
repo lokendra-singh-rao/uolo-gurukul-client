@@ -2,6 +2,10 @@
   margin-bottom: 20px;
 }
 
+.mandatoryField {
+  color: #d92d20;
+}
+
 .photoUploadLabel {
   display: block;
   font-weight: 600;

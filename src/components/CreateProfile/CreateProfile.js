@@ -18,18 +18,15 @@ const CreateProfile = ({ setTeamPageActive }) => {
     password: "",
     confirmPassword: "",
   });
-  const [formError, setFormError] = useState({
-    name: false,
-    email: false,
-    password: false,
-    confirmPassword: false,
-  });
-  const [errorMessage, setErrorMessage] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const [nameError, setNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [confirmPasswordError, setConfirmPasswordError] = useState(false);
+  const [nameErrorMessage, setNameErrorMessage] = useState("");
+  const [emailErrorMessage, setEmailErrorMessage] = useState("");
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
+  const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] =
+    useState("");
   const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
   const [success, setSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -47,6 +44,24 @@ const CreateProfile = ({ setTeamPageActive }) => {
     } else {
       setSubmitButtonDisabled(true);
     }
+
+    if (formData.name.replace(" ", "").length >= 3) {
+      setNameError(false);
+    }
+
+    if (formData.password === formData.confirmPassword) {
+      setConfirmPasswordError(false);
+    } else {
+      setConfirmPasswordError(true);
+    }
+
+    if (formData.password.length >= 6) {
+      setPasswordError(false);
+    }
+
+    if (isEmailValid(formData.email)) {
+      setEmailError(false);
+    }
   }, [formData, image]);
 
   useEffect(() => {
@@ -62,44 +77,57 @@ const CreateProfile = ({ setTeamPageActive }) => {
     try {
       e.preventDefault();
       setSubmitButtonDisabled(true);
+      let isError = false;
+
       //Form validations
-      if (
-        image?.data === "" ||
-        formData.name === "" ||
-        formData.email === "" ||
-        formData.password === "" ||
-        formData.confirmPassword === ""
-      ) {
-        toast.error("All fields are required!");
-        return;
+      if (!isAlphanumeric(formData.name)) {
+        setNameErrorMessage("Invalid name");
+        setNameError(true);
+        isError = true;
+      } else {
+        setNameError(false);
       }
 
-      if (!(isAlphanumeric(formData.name) && formData.name.length > 0)) {
-        toast.error("Invalid name");
-        return;
+      if (formData.name.replace(" ", "").length < 3) {
+        setNameErrorMessage("Name must be at least 3 characters");
+        setNameError(true);
+        isError = true;
+      } else {
+        setNameError(false);
       }
+
       if (!isEmailValid(formData.email)) {
-        // formError.email === true;
-        return;
-      }
-
-      if (formData.password === "") {
-        toast.error("Password empty!");
-        return;
+        setEmailErrorMessage("Invalid email");
+        setEmailError(true);
+        isError = true;
+      } else {
+        setEmailError(false);
       }
 
       if (formData.password.length < 6) {
-        toast.error("Passwords must be at least 6 characters in length!");
-        return;
+        setPasswordErrorMessage(
+          "Passwords must be at least 6 characters in length"
+        );
+        setPasswordError(true);
+        isError = true;
+      } else {
+        setPasswordError(false);
       }
 
       if (formData.password !== formData.confirmPassword) {
-        toast.error("Password does not match!");
-        return;
+        setConfirmPasswordErrorMessage("Password does not match");
+        setConfirmPasswordError(true);
+        isError = true;
+      } else {
+        setConfirmPasswordError(false);
       }
 
       if (image.data === "") {
         toast.error("Image not selected!");
+        isError = true;
+      }
+
+      if (isError) {
         return;
       }
 
@@ -125,6 +153,7 @@ const CreateProfile = ({ setTeamPageActive }) => {
         }, 3000);
       }
     } catch (error) {
+      console.log(error);
       toast.error("Something went wrong! Please try again later");
     } finally {
       setSubmitButtonDisabled(false);
@@ -132,7 +161,18 @@ const CreateProfile = ({ setTeamPageActive }) => {
     }
   };
 
+  const handleCancel = (e) => {
+    e.preventDefault();
+    setFormData({
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
+    setImage({ preview: "", data: "" });
+  };
   const handleFileChange = (e) => {
+    console.log("ll");
     if (
       e?.target?.files[0]?.type !== "image/jpeg" &&
       e?.target?.files[0]?.type !== "image/png"
@@ -166,8 +206,8 @@ const CreateProfile = ({ setTeamPageActive }) => {
               name={"name"}
               value={formData.name}
               handleChange={handleChange}
-              isError={formError.name}
-              errorMessage={errorMessage.name}
+              isError={nameError}
+              errorMessage={nameErrorMessage}
             />
 
             <FormInput
@@ -177,8 +217,8 @@ const CreateProfile = ({ setTeamPageActive }) => {
               name={"email"}
               value={formData.email}
               handleChange={handleChange}
-              isError={formError.email}
-              errorMessage={errorMessage.email}
+              isError={emailError}
+              errorMessage={emailErrorMessage}
             />
 
             <FormInput
@@ -188,8 +228,8 @@ const CreateProfile = ({ setTeamPageActive }) => {
               name={"password"}
               value={formData.password}
               handleChange={handleChange}
-              isError={formError.password}
-              errorMessage={errorMessage.password}
+              isError={passwordError}
+              errorMessage={passwordErrorMessage}
             />
 
             <FormInput
@@ -199,13 +239,14 @@ const CreateProfile = ({ setTeamPageActive }) => {
               name={"confirmPassword"}
               value={formData.confirmPassword}
               handleChange={handleChange}
-              isError={formError.confirmPassword}
-              errorMessage={errorMessage.confirmPassword}
+              isError={confirmPasswordError}
+              errorMessage={confirmPasswordErrorMessage}
             />
 
             <FormActionButtons
               submitButtonDisabled={submitButtonDisabled}
               handleSubmit={handleSubmit}
+              handleCancel={handleCancel}
               submitting={submitting}
             />
           </form>

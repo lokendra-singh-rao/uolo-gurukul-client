@@ -1,5 +1,5 @@
 .formGroup {
-  margin-bottom: 15px;
+  margin-bottom: 2px;
 }
 
 .mandatoryField,
@@ -7,6 +7,10 @@
   color: #d92d20;
   margin: 0;
   font-size: 12px;
+}
+
+.inputError {
+  min-height: 16.5px;
 }
 
 .formGroup label {

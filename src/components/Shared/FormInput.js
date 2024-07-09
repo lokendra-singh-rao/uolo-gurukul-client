@@ -26,7 +26,11 @@ function FormInput({
         onChange={handleChange}
         required
       />
-      {isError && <p className={styles.inputError}>{errorMessage}</p>}
+      {isError ? (
+        <p className={styles.inputError}>{errorMessage}</p>
+      ) : (
+        <p className={styles.inputError}></p>
+      )}
     </div>
   );
 }

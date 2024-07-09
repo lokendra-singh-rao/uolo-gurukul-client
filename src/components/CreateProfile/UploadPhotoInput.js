@@ -21,7 +21,9 @@ function UploadPhotoInput({ image, handleFileChange }) {
             type="file"
             id={styles.uploadInput}
             hidden
-            onChange={(e) => handleFileChange(e)}
+            onChange={(e) => {
+              handleFileChange(e);
+            }}
             accept=".png, .jpg, .jpeg"
           />
           <label
