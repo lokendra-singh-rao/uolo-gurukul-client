@@ -4,10 +4,10 @@ import values from "../../values.js";
 import { toast } from "react-toastify";
 import { isAlphanumeric, isEmailValid } from "../../utils/regexTesters.js";
 import { useNavigate } from "react-router-dom";
-import SuccessModal from "./SuccessModal.js";
+import SuccessModal from "../Shared/SuccessModal.js";
 import FormInput from "../Shared/FormInput.js";
 import UploadPhotoInput from "./UploadPhotoInput.js";
-import FormActionButtons from "./FormActionButtons.js";
+import FormActionButtons from "../Shared/FormActionButtons.js";
 import styles from "./CreateProfile.module.css";
 
 const CreateProfile = ({ setTeamPageActive }) => {

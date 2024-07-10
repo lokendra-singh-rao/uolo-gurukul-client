@@ -24,7 +24,7 @@ function UploadPhotoInput({ image, handleFileChange }) {
             onChange={(e) => {
               handleFileChange(e);
             }}
-            // accept=".png, .jpg, .jpeg"
+            accept=".png, .jpg, .jpeg"
           />
           <label
             htmlFor={styles.uploadInput}
