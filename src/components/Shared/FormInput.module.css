@@ -1,5 +1,6 @@
 .formGroup {
   margin-bottom: 2px;
+  padding: 0 32px;
 }
 
 .mandatoryField,

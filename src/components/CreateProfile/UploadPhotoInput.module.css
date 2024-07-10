@@ -1,5 +1,7 @@
 .photoUpload {
   margin-bottom: 20px;
+  padding: 0 32px;
+  padding-top: 32px;
 }
 
 .mandatoryField {
