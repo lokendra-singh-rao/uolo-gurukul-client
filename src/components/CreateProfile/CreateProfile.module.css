@@ -1,6 +1,5 @@
 .createProfileMain {
   display: flex;
-  height: calc(100vh - 76.5px);
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -39,7 +38,7 @@
   }
 
   .createProfileMain h1 {
-    margin-top: 0;
+    margin-top: 16px;
     margin-bottom: 0;
   }
 

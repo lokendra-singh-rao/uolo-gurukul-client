@@ -3,6 +3,8 @@ import deleteIcon from "../../assets/deleteIcon.png";
 import values from "../../values";
 import { toast } from "react-toastify";
 import styles from "./TeamMemberCard.module.css";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function TeamMemberCard({ fetchUsers, member }) {
   async function handleDelete(id) {
@@ -37,10 +39,11 @@ function TeamMemberCard({ fetchUsers, member }) {
         <img
           src={member.image}
           alt={member.name}
+          style={{ animation: "ease-in 1s" }}
         />
       </div>
       <div className={styles.memberCardInfo}>
-        <h3>{member.name}</h3>
+        <h3>{member.name || <Skeleton />}</h3>
         <p>{member.email}</p>
       </div>
     </div>

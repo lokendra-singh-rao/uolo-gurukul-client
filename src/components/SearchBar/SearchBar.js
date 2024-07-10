@@ -2,7 +2,7 @@ import React from "react";
 import searchIcon from "../../assets/searchIcon.svg";
 import styles from "./SearchBar.module.css";
 
-function SearchBar({ searchQuery, setSearchQuery }) {
+function SearchBar({ searchQuery, setSearchQuery, searchUsers }) {
   return (
     <div className={styles.searchBar}>
       <img
@@ -18,7 +18,7 @@ function SearchBar({ searchQuery, setSearchQuery }) {
       />
       <button
         onClick={(e) => {
-          window.alert("Search will be implemented in Level 3");
+          searchUsers(e);
         }}
       >
         Search
