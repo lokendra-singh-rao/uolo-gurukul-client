@@ -1,7 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import Login from ".././Auth/Login";
+import Login from "../Auth/Login/Login.js";
 import TeamPage from "../Team/TeamPage";
-import CreateProfile from ".././CreateProfile/CreateProfile";
+import CreateProfile from "../Profile/CreateProfile/CreateProfile";
 import NotFound from "../NotFound/NotFound.js";
 import { Layout } from "../Layout/Layout";
 import React, { useState } from "react";

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import uoloLogo from "../../assets/uoloLogo.png";
+import uoloLogo from "../../../assets/uoloLogo.png";
 import styles from "./Sidebar.module.css";
 
 function Sidebar({ showSidebar, setShowSidebar, teamPageActive }) {

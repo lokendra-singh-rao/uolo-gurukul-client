@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-import values from "../../values.js";
+import values from "../../../values.js";
 import { toast } from "react-toastify";
-import { isAlphanumeric, isEmailValid } from "../../utils/regexTesters.js";
+import { isAlphanumeric, isEmailValid } from "../../../utils/regexTesters.js";
 import { useNavigate } from "react-router-dom";
-import SuccessModal from "../Shared/SuccessModal.js";
-import FormInput from "../Shared/FormInput.js";
-import UploadPhotoInput from "./UploadPhotoInput.js";
-import FormActionButtons from "../Shared/FormActionButtons.js";
+import SuccessModal from "../../Shared/SuccessModal/SuccessModal.js";
+import FormInput from "../../Shared/FormInput/FormInput.js";
+import UploadPhotoInput from "../UploadPhotoInput/UploadPhotoInput.js";
+import FormActionButtons from "../../Shared/FormActionButtons/FormActionButtons.js";
 import styles from "./CreateProfile.module.css";
 
 const CreateProfile = ({ setTeamPageActive }) => {

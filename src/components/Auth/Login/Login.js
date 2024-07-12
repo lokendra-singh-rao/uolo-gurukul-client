@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import loginPage from "../../assets/loginPage.png";
-import uoloLogo from "../../assets/uoloLogo.png";
+import loginPage from "../../../assets/loginPage.png";
+import uoloLogo from "../../../assets/uoloLogo.png";
 import styles from "./Login.module.css";
 
 function Login() {

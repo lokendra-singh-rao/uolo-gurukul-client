@@ -1,6 +1,6 @@
 import { ToastContainer, Zoom } from "react-toastify";
-import Sidebar from ".././Shared/Sidebar";
-import Header from ".././Shared/Header";
+import Sidebar from ".././Shared/Sidebar/Sidebar";
+import Header from ".././Shared/Header/Header";
 import styles from "./Layout.module.css";
 
 export const Layout = ({

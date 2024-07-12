@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./SuccessModal.module.css";
-import successIcon from "../../assets/success.gif";
+import successIcon from "../../../assets/success.gif";
 
 function SuccessModal({ setSuccess }) {
   return (

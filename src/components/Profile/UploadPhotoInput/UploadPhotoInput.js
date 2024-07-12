@@ -1,6 +1,6 @@
 import React from "react";
-import uploadImageIcon from "../../assets/uploadImageIcon.png";
-import uploadIcon from "../../assets/uploadIcon.png";
+import uploadImageIcon from "../../../assets/uploadImageIcon.png";
+import uploadIcon from "../../../assets/uploadIcon.png";
 import styles from "./UploadPhotoInput.module.css";
 
 function UploadPhotoInput({ image, handleFileChange }) {
