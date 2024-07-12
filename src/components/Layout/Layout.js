@@ -11,19 +11,19 @@ export const Layout = ({
   setTeamPageActive,
 }) => (
   <>
+    <ToastContainer
+      position="top-center"
+      limit={3}
+      autoClose={1500}
+      theme="dark"
+      transition={Zoom}
+      hideProgressBar
+      closeOnClick={false}
+      draggable={false}
+      newestOnTop
+    />
     <Header setShowSidebar={setShowSidebar} />
     <div className={styles.mainContent}>
-      <ToastContainer
-        position="top-center"
-        limit={3}
-        autoClose={1500}
-        theme="dark"
-        transition={Zoom}
-        hideProgressBar
-        closeOnClick={false}
-        draggable={false}
-        newestOnTop
-      />
       <Sidebar
         showSidebar={showSidebar}
         setShowSidebar={setShowSidebar}

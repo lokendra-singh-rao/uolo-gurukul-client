@@ -25,7 +25,7 @@ function TeamPage({ setTeamPageActive }) {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `${values.serverURL}/users?page=${currentPage}`,
+        `${values.serverURL}/users?page=${currentPage}&query=${searchQuery}`,
         {
           method: "GET",
         }
@@ -33,6 +33,9 @@ function TeamPage({ setTeamPageActive }) {
       const data = await response.json();
       if (data?.err) {
         toast.error("Something went wrong! Please try again");
+        setUsers([]);
+        setTotalPage(0);
+        setCurrentPage(1);
       } else {
         setUsers(data?.filteredUsers);
         setTotalPage(data?.totalPages);
@@ -41,27 +44,9 @@ function TeamPage({ setTeamPageActive }) {
         }
       }
     } catch (error) {
-      toast.error("Something went wrong! Please try again");
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
-  async function searchUsers() {
-    try {
-      setIsLoading(true);
-
-      const response = await fetch(
-        `${values.serverURL}/users?page=${currentPage}&query=${searchQuery}`,
-        {
-          method: "GET",
-        }
-      );
-
-      const data = await response.json();
-
-      console.log("search", data);
-    } catch (error) {
+      setUsers([]);
+      setTotalPage(0);
+      setCurrentPage(1);
       toast.error("Something went wrong! Please try again");
     } finally {
       setIsLoading(false);
@@ -80,9 +65,10 @@ function TeamPage({ setTeamPageActive }) {
     >
       <h1>Our Team</h1>
       <SearchBar
+        setCurrentPage={setCurrentPage}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        searchUsers={searchUsers}
+        searchUsers={fetchUsers}
       />
       <TeamGrid
         users={users}

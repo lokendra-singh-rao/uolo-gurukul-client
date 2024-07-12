@@ -14,10 +14,12 @@ function TeamMemberCard({ fetchUsers, member }) {
       });
       const data = await response.json();
       if (data?.err) {
-        toast.error("Something went wrong! Please try again");
+        toast.error(data?.err);
       } else {
         toast.info(data?.message);
-        fetchUsers();
+        setTimeout(async () => {
+          await fetchUsers();
+        }, 750);
       }
     } catch (error) {
       toast.error("Something went wrong! Please try again");
@@ -32,7 +34,7 @@ function TeamMemberCard({ fetchUsers, member }) {
       <div className={styles.memberImage}>
         <img
           className={styles.deleteIcon}
-          onClick={(e) => handleDelete(member._id)}
+          onClick={(e) => handleDelete(member._id || member.id)}
           src={deleteIcon}
           alt="deleteIcon"
         />
