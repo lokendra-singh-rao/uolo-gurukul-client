@@ -79,6 +79,11 @@
   background-color: #561fe7;
   color: #fff;
   width: 100%;
+  margin: 0 7.5px;
+  padding: 7.5px 12.5px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 16px;
 }
 
 .loginImageOverlay {

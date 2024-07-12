@@ -52,7 +52,11 @@ const CreateProfile = ({ setTeamPageActive }) => {
     if (formData.password === formData.confirmPassword) {
       setConfirmPasswordError(false);
     } else {
-      setConfirmPasswordError(true);
+      if (!(formData.confirmPassword.length === 0)) {
+        setConfirmPasswordError(true);
+      } else {
+        setConfirmPasswordError(false);
+      }
     }
 
     if (formData.password.length >= 6) {
@@ -60,6 +64,10 @@ const CreateProfile = ({ setTeamPageActive }) => {
     }
 
     if (isEmailValid(formData.email)) {
+      setEmailError(false);
+    }
+
+    if (formData.email.length === 0) {
       setEmailError(false);
     }
   }, [formData, image]);
@@ -148,9 +156,9 @@ const CreateProfile = ({ setTeamPageActive }) => {
         toast.error(data.err);
       } else {
         setSuccess(true);
-        // setTimeout(() => {
-        //   navigate("/team");
-        // }, 3000);
+        setTimeout(() => {
+          navigate("/team");
+        }, 3000);
       }
     } catch (error) {
       console.error(error);

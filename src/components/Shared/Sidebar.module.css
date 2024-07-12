@@ -68,6 +68,7 @@ svg {
     cursor: pointer;
     font-size: 18px;
   }
+
   .sidebar {
     position: fixed;
     left: -100%;
@@ -78,6 +79,7 @@ svg {
     height: 100%;
     background-color: #fff;
   }
+
   .phoneActive {
     left: 0;
   }

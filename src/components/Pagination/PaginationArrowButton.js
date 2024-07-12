@@ -9,7 +9,7 @@ export const PaginationArrowButton = ({
 }) => {
   return (
     <button
-      className={styles.button}
+      className={styles.arrowButton}
       onClick={() => onPageChange(toPage)}
       disabled={disabled ? false : true}
     >
