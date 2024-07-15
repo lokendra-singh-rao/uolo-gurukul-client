@@ -1,6 +1,6 @@
 .createProfileBackdrop {
   width: 100%;
-  height: calc(100vh);
+  height: 100%;
   top: 0;
   background-color: #0000007c;
   position: absolute;

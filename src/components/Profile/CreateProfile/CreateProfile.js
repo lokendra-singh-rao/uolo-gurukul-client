@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import values from "../../../values.js";
 import { toast } from "react-toastify";
 import { isAlphanumeric, isEmailValid } from "../../../utils/regexTesters.js";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +8,7 @@ import FormInput from "../../Shared/FormInput/FormInput.js";
 import UploadPhotoInput from "../UploadPhotoInput/UploadPhotoInput.js";
 import FormActionButtons from "../../Shared/FormActionButtons/FormActionButtons.js";
 import styles from "./CreateProfile.module.css";
+import { addUser } from "../../APIs/UserApi.js";
 
 const CreateProfile = ({ setTeamPageActive }) => {
   const [image, setImage] = useState({ preview: "", data: "" });
@@ -45,7 +45,10 @@ const CreateProfile = ({ setTeamPageActive }) => {
       setSubmitButtonDisabled(true);
     }
 
-    if (formData.name.replace(" ", "").length >= 3) {
+    if (
+      formData.name.replace(" ", "").length >= 3 &&
+      isAlphanumeric(formData.name)
+    ) {
       setNameError(false);
     }
 
@@ -88,18 +91,19 @@ const CreateProfile = ({ setTeamPageActive }) => {
       let isError = false;
 
       //Form validations
-      if (!isAlphanumeric(formData.name)) {
-        setNameErrorMessage("Invalid name");
+      if (formData.name.replace(" ", "").length < 3) {
+        setNameErrorMessage("Name must be at least 3 characters");
         setNameError(true);
         isError = true;
       } else {
         setNameError(false);
       }
 
-      if (formData.name.replace(" ", "").length < 3) {
-        setNameErrorMessage("Name must be at least 3 characters");
+      if (!isAlphanumeric(formData.name)) {
+        setNameErrorMessage("Invalid name");
         setNameError(true);
         isError = true;
+        console.log(nameErrorMessage);
       } else {
         setNameError(false);
       }
@@ -147,11 +151,8 @@ const CreateProfile = ({ setTeamPageActive }) => {
       formDataToSend.append("email", formData.email);
       formDataToSend.append("password", formData.password);
 
-      const response = await fetch(`${values.serverURL}/users`, {
-        method: "POST",
-        body: formDataToSend,
-      });
-      const data = await response.json();
+      const data = await addUser(formDataToSend);
+
       if (data?.err) {
         toast.error(data.err);
       } else {

@@ -29,14 +29,14 @@ function SearchBar({
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             setCurrentPage(1);
-            searchUsers(e);
+            searchUsers();
           }
         }}
       />
       <button
         onClick={(e) => {
           setCurrentPage(1);
-          searchUsers(e);
+          searchUsers();
         }}
       >
         Search

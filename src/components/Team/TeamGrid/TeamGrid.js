@@ -1,7 +1,7 @@
-import TeamMemberCard from "./TeamMemerCard";
-import noResultsIcon from "../../assets/noResultsIcon.png";
+import TeamMemberCard from "../TeamMemberCard/TeamMemerCard";
+import noResultsIcon from "../../../assets/noResultsIcon.png";
 import styles from "./TeamGrid.module.css";
-import Loader from "../Shared/Loader/Loader";
+import Loader from "../../Shared/Loader/Loader";
 
 function TeamGrid({ users, fetchUsers, isLoading }) {
   return (

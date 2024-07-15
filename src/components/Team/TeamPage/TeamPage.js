@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import SearchBar from "../SearchBar/SearchBar";
-import TeamGrid from "./TeamGrid";
-import Pagination from "../Pagination/Pagination";
-import values from "../../values";
+import SearchBar from "../../SearchBar/SearchBar";
+import TeamGrid from "../TeamGrid/TeamGrid";
+import Pagination from "../../Pagination/Pagination";
 import { toast } from "react-toastify";
 import styles from "./TeamPage.module.css";
+import { getUsers } from "../../APIs/UserApi";
 
 function TeamPage({ setTeamPageActive }) {
   const [users, setUsers] = useState([]);
@@ -13,30 +13,30 @@ function TeamPage({ setTeamPageActive }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
-  let shouldFetch = true;
+  useEffect(() => {
+    fetchUsers();
+  }, [currentPage]);
 
   useEffect(() => {
-    if (shouldFetch) fetchUsers();
-    shouldFetch = false;
     setTeamPageActive(true);
-  }, [currentPage]);
+  }, []);
 
   async function fetchUsers() {
     try {
       setIsLoading(true);
-      const response = await fetch(
-        `${values.serverURL}/users?page=${currentPage}&query=${searchQuery}`,
-        {
-          method: "GET",
-        }
-      );
-      const data = await response.json();
+
+      const data = await getUsers({ currentPage, searchQuery });
+
       if (data?.err) {
         toast.error("Something went wrong! Please try again");
         setUsers([]);
         setTotalPage(0);
         setCurrentPage(1);
       } else {
+        if (isNaN(data?.totalPages) || isNaN(data?.currentPage)) {
+          toast.error("Something went wrong! Please try again");
+          return;
+        }
         setUsers(data?.filteredUsers);
         setTotalPage(data?.totalPages);
         if (data.totalPages < currentPage && currentPage > 1) {
@@ -55,7 +55,6 @@ function TeamPage({ setTeamPageActive }) {
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
-    shouldFetch = true;
   };
 
   return (

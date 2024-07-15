@@ -1,6 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
 import Login from "../Auth/Login/Login.js";
-import TeamPage from "../Team/TeamPage";
+import TeamPage from "../Team/TeamPage/TeamPage.js";
 import CreateProfile from "../Profile/CreateProfile/CreateProfile";
 import NotFound from "../NotFound/NotFound.js";
 import { Layout } from "../Layout/Layout";

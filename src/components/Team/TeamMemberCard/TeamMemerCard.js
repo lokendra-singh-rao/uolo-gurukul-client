@@ -1,25 +1,24 @@
 import React from "react";
-import deleteIcon from "../../assets/deleteIcon.png";
-import values from "../../values";
+import deleteIcon from "../../../assets/deleteIcon.png";
+import values from "../../../values";
 import { toast } from "react-toastify";
 import styles from "./TeamMemberCard.module.css";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { deleteUser } from "../../APIs/UserApi";
 
 function TeamMemberCard({ fetchUsers, member }) {
   async function handleDelete(id) {
     try {
-      const response = await fetch(`${values.serverURL}/users?id=${id}`, {
-        method: "DELETE",
-      });
-      const data = await response.json();
+      const data = await deleteUser({ id });
+
       if (data?.err) {
         toast.error(data?.err);
       } else {
         toast.info(data?.message);
         setTimeout(async () => {
           await fetchUsers();
-        }, 750);
+        }, 1000);
       }
     } catch (error) {
       toast.error("Something went wrong! Please try again");
