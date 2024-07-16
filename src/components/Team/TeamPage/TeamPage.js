@@ -28,7 +28,7 @@ function TeamPage({ setTeamPageActive }) {
       const data = await getUsers({ currentPage, searchQuery });
 
       if (data?.err) {
-        toast.error("Something went wrong! Please try again");
+        toast.error(data.err);
         setUsers([]);
         setTotalPage(0);
         setCurrentPage(1);

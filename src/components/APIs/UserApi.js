@@ -4,7 +4,7 @@ import { callApi } from "./Configs/ApiConfig";
 export async function getUsers({ currentPage, searchQuery }) {
   const data = await callApi(
     `${values.serverURL}/users?page=${currentPage}&query=${searchQuery}`,
-    "GET"
+    values.methods.GET
   );
   return data;
 }
