@@ -12,12 +12,11 @@ import styles from "./AppComponent.module.css";
 export function AppContent() {
   const [showSidebar, setShowSidebar] = useState(false);
   const [teamPageActive, setTeamPageActive] = useState(null);
-  const { token, loading, user } = useContext(AuthContext);
+  const { token, loading } = useContext(AuthContext);
 
   if (loading) {
     return null;
   }
-
   return (
     <>
       {token && <Header setShowSidebar={setShowSidebar} />}

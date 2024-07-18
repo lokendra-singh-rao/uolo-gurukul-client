@@ -12,7 +12,6 @@ export async function callApi({ url, method, body }) {
       body: body,
       credentials: "include",
     });
-    console.log(response.status);
     if (response.status === 401) {
       return null;
     } else {

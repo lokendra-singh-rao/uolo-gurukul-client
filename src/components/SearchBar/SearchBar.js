@@ -13,11 +13,12 @@ function SearchBar({
   useEffect(() => {
     if (searchQuery?.length === 0 && !isFirst) {
       handleSearchQueryEmpty();
+      setIsFirst(true);
     }
-    setIsFirst(false);
   }, [searchQuery]);
 
   async function handleSearchQueryEmpty() {
+    setIsFirst(false);
     await setCurrentPageForSearch();
     await searchUsers();
   }
@@ -31,6 +32,7 @@ function SearchBar({
       toast.error("Search query empty!");
       return;
     }
+    setIsFirst(false);
     await setCurrentPageForSearch();
     await searchUsers();
   }

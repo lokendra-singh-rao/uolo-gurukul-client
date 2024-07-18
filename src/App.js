@@ -17,6 +17,7 @@ function App() {
 
   useEffect(() => {
     try {
+      console.log(Cookies.get("token"));
       if (Cookies.get("token")) {
         setToken(Cookies.get("token"));
       }

@@ -38,7 +38,6 @@ function TeamPage({ setTeamPageActive }) {
         setTotalPage(0);
         setCurrentPage(1);
       } else {
-        console.log("here");
         if (isNaN(data?.totalPages) || isNaN(data?.currentPage)) {
           toast.error("Something went wrong! Please try again");
           return;

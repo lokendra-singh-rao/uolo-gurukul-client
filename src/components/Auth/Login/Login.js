@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import loginPage from "../../../assets/loginPage.png";
 import uoloLogo from "../../../assets/uoloLogo.png";
 import styles from "./Login.module.css";
@@ -34,6 +34,12 @@ function Login() {
       toast.error("Something went wrong! Please try again");
     }
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowLogoutModal(false);
+    }, 3000);
+  }, []);
 
   return (
     <>
