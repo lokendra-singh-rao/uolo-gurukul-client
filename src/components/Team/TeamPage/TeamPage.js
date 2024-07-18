@@ -4,7 +4,8 @@ import TeamGrid from "../TeamGrid/TeamGrid";
 import Pagination from "../../Pagination/Pagination";
 import { toast } from "react-toastify";
 import styles from "./TeamPage.module.css";
-import { getUsers } from "../../APIs/UserApi";
+import { getUsers } from "../../APIs/User";
+import { useLogout } from "../../APIs/Auth";
 
 function TeamPage({ setTeamPageActive }) {
   const [users, setUsers] = useState([]);
@@ -12,6 +13,7 @@ function TeamPage({ setTeamPageActive }) {
   const [totalPage, setTotalPage] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const logout = useLogout();
 
   useEffect(() => {
     fetchUsers();
@@ -24,15 +26,19 @@ function TeamPage({ setTeamPageActive }) {
   async function fetchUsers() {
     try {
       setIsLoading(true);
-
       const data = await getUsers({ currentPage, searchQuery });
-
+      if (!data) {
+        toast.error("You are logged out! Login again to continue");
+        logout();
+        return;
+      }
       if (data?.err) {
         toast.error(data.err);
         setUsers([]);
         setTotalPage(0);
         setCurrentPage(1);
       } else {
+        console.log("here");
         if (isNaN(data?.totalPages) || isNaN(data?.currentPage)) {
           toast.error("Something went wrong! Please try again");
           return;

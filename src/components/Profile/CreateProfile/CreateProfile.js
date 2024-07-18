@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import { toast } from "react-toastify";
 import { isAlphanumeric, isEmailValid } from "../../../utils/regexTesters.js";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +7,7 @@ import FormInput from "../../Shared/FormInput/FormInput.js";
 import UploadPhotoInput from "../UploadPhotoInput/UploadPhotoInput.js";
 import FormActionButtons from "../../Shared/FormActionButtons/FormActionButtons.js";
 import styles from "./CreateProfile.module.css";
-import { addUser } from "../../APIs/UserApi.js";
+import { addUser } from "../../APIs/User.js";
 
 const CreateProfile = ({ setTeamPageActive }) => {
   const [image, setImage] = useState({ preview: "", data: "" });
@@ -103,7 +102,6 @@ const CreateProfile = ({ setTeamPageActive }) => {
         setNameErrorMessage("Invalid name");
         setNameError(true);
         isError = true;
-        console.log(nameErrorMessage);
       } else {
         setNameError(false);
       }
@@ -151,14 +149,16 @@ const CreateProfile = ({ setTeamPageActive }) => {
       formDataToSend.append("email", formData.email);
       formDataToSend.append("password", formData.password);
 
-      const data = await addUser(formDataToSend);
-
+      const data = await addUser({ formDataToSend });
+      if (!data) {
+        return;
+      }
       if (data?.err) {
         toast.error(data.err);
       } else {
         setSuccess(true);
         setTimeout(() => {
-          navigate("/team");
+          navigate("/");
         }, 3000);
       }
     } catch (error) {
@@ -198,7 +198,12 @@ const CreateProfile = ({ setTeamPageActive }) => {
 
   return (
     <>
-      {success && <SuccessModal setSuccess={setSuccess} />}
+      {success && (
+        <SuccessModal
+          setSuccess={setSuccess}
+          message={"User has been successfully created"}
+        />
+      )}
       <div className={styles.createProfileMain}>
         <h1>Create Profile</h1>
         <div className={styles.profileCreationContainer}>

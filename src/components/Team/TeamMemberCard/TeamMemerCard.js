@@ -1,17 +1,23 @@
 import React from "react";
 import deleteIcon from "../../../assets/deleteIcon.png";
-import values from "../../../values";
 import { toast } from "react-toastify";
 import styles from "./TeamMemberCard.module.css";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { deleteUser } from "../../APIs/UserApi";
+import { deleteUser } from "../../APIs/User";
+import { useLogout } from "../../APIs/Auth";
 
 function TeamMemberCard({ fetchUsers, member }) {
+  const logout = useLogout();
+
   async function handleDelete(id) {
     try {
       const data = await deleteUser({ id });
-
+      if (!data) {
+        toast.error("You are logged out! Login again to continue");
+        logout();
+        return;
+      }
       if (data?.err) {
         toast.error(data?.err);
       } else {

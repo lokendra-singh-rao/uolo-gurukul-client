@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import uoloLogo from "../../../assets/uoloLogo.png";
 import styles from "./Sidebar.module.css";
+import { useLogout } from "../../APIs/Auth";
+import logoutIcon from "../../../assets/logoutIcon.png";
+import { AuthContext } from "../../../AuthContext";
 
 function Sidebar({ showSidebar, setShowSidebar, teamPageActive }) {
+  const logout = useLogout();
+  const { setShowLogoutModal } = useContext(AuthContext);
+
+  function handleLogout(e) {
+    setShowSidebar(false);
+    logout();
+    setShowLogoutModal(true);
+  }
+
   return (
     <React.Fragment>
       {showSidebar ? (
@@ -31,7 +43,7 @@ function Sidebar({ showSidebar, setShowSidebar, teamPageActive }) {
               />
             </li>
             <Link
-              to={"/team"}
+              to={"/"}
               onClick={() => {
                 setShowSidebar(false);
               }}
@@ -78,6 +90,13 @@ function Sidebar({ showSidebar, setShowSidebar, teamPageActive }) {
                 &nbsp; Create Profile
               </li>
             </Link>
+            {showSidebar && (
+              <Link className={styles.sidebarLogoutButton}>
+                <li onClick={(e) => handleLogout(e)}>
+                  <img src={logoutIcon} /> &nbsp; Logout
+                </li>
+              </Link>
+            )}
           </ul>
         </nav>
       </aside>

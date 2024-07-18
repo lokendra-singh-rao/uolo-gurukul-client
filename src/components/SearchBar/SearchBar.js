@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import searchIcon from "../../assets/searchIcon.svg";
 import styles from "./SearchBar.module.css";
+import { toast } from "react-toastify";
 
 function SearchBar({
   searchQuery,
@@ -8,11 +9,31 @@ function SearchBar({
   searchUsers,
   setCurrentPage,
 }) {
+  const [isFirst, setIsFirst] = useState(true);
   useEffect(() => {
-    if (searchQuery?.length === 0) {
-      searchUsers();
+    if (searchQuery?.length === 0 && !isFirst) {
+      handleSearchQueryEmpty();
     }
+    setIsFirst(false);
   }, [searchQuery]);
+
+  async function handleSearchQueryEmpty() {
+    await setCurrentPageForSearch();
+    await searchUsers();
+  }
+
+  async function setCurrentPageForSearch() {
+    setCurrentPage(1);
+  }
+
+  async function handleSearch() {
+    if (searchQuery.length < 1) {
+      toast.error("Search query empty!");
+      return;
+    }
+    await setCurrentPageForSearch();
+    await searchUsers();
+  }
 
   return (
     <div className={styles.searchBar}>
@@ -28,15 +49,13 @@ function SearchBar({
         onChange={(e) => setSearchQuery(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            setCurrentPage(1);
-            searchUsers();
+            handleSearch();
           }
         }}
       />
       <button
         onClick={(e) => {
-          setCurrentPage(1);
-          searchUsers();
+          handleSearch();
         }}
       >
         Search

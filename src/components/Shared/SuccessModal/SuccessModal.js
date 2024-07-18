@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./SuccessModal.module.css";
 import successIcon from "../../../assets/success.gif";
 
-function SuccessModal({ setSuccess }) {
+function SuccessModal({ setSuccess, message }) {
   return (
     <div
       className={styles.createProfileBackdrop}
@@ -16,7 +16,7 @@ function SuccessModal({ setSuccess }) {
             alt="success"
           />
         </div>
-        <div>User has been successfully created</div>
+        <div>{message}</div>
       </div>
     </div>
   );
