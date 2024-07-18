@@ -8,6 +8,7 @@ import UploadPhotoInput from "../UploadPhotoInput/UploadPhotoInput.js";
 import FormActionButtons from "../../Shared/FormActionButtons/FormActionButtons.js";
 import styles from "./CreateProfile.module.css";
 import { addUser } from "../../APIs/User.js";
+import { useLogout } from "../../APIs/Auth.js";
 
 const CreateProfile = ({ setTeamPageActive }) => {
   const [image, setImage] = useState({ preview: "", data: "" });
@@ -30,6 +31,7 @@ const CreateProfile = ({ setTeamPageActive }) => {
   const [success, setSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
+  const logout = useLogout();
 
   useEffect(() => {
     if (
@@ -151,6 +153,8 @@ const CreateProfile = ({ setTeamPageActive }) => {
 
       const data = await addUser({ formDataToSend });
       if (!data) {
+        await logout();
+        toast.error("You are logged out! Login again to continue");
         return;
       }
       if (data?.err) {

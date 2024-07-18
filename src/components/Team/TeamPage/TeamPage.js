@@ -28,8 +28,8 @@ function TeamPage({ setTeamPageActive }) {
       setIsLoading(true);
       const data = await getUsers({ currentPage, searchQuery });
       if (!data) {
+        await logout();
         toast.error("You are logged out! Login again to continue");
-        logout();
         return;
       }
       if (data?.err) {

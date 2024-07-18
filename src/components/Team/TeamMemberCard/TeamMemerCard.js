@@ -14,8 +14,8 @@ function TeamMemberCard({ fetchUsers, member }) {
     try {
       const data = await deleteUser({ id });
       if (!data) {
+        await logout();
         toast.error("You are logged out! Login again to continue");
-        logout();
         return;
       }
       if (data?.err) {

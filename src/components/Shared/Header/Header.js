@@ -14,9 +14,9 @@ const Navbar = ({ setShowSidebar }) => {
   const [logoutDropdown, setLogoutDropdown] = useState(false);
 
   const logout = useLogout();
-  function handleLogout(e) {
+  async function handleLogout(e) {
     e.preventDefault();
-    logout();
+    await logout();
     setShowLogoutModal(true);
   }
   return (

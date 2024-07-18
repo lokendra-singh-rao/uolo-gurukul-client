@@ -10,9 +10,9 @@ function Sidebar({ showSidebar, setShowSidebar, teamPageActive }) {
   const logout = useLogout();
   const { setShowLogoutModal } = useContext(AuthContext);
 
-  function handleLogout(e) {
+  async function handleLogout(e) {
     setShowSidebar(false);
-    logout();
+    await logout();
     setShowLogoutModal(true);
   }
 

@@ -17,7 +17,11 @@ export function useLogout() {
   const { setToken, setUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const logout = () => {
+  const logout = async () => {
+    const data = await callApi({
+      url: `${values.serverURL}/logout`,
+      method: values.methods.GET,
+    });
     Cookies.remove("token");
     Cookies.remove("user");
     setToken("");
